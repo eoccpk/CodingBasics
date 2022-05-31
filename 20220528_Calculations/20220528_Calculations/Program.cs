@@ -6,22 +6,10 @@ namespace _20220528_Calculations
     {
         static void Main(string[] args)
         {
-            int a = 10;
-            int b = 5;
-            int c;
-
-            c = a + b;
-            Console.WriteLine("Result : " + c);
-
-            c = a - b;
-            Console.WriteLine("Result : " + c);
-
-            c = a * b;
-            Console.WriteLine("Result : " + c);
-
-            c = a / b;
-            Console.WriteLine("Result : " + c);
-
+            double width = 4;
+            double height = 2.5;
+            double Area = width * height;
+            Console.WriteLine("Area of My Table : " + Area);
             Console.ReadKey();
         }
     }

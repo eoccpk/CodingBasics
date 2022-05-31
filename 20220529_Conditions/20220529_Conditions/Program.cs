@@ -6,7 +6,7 @@ namespace _20220529_Conditions
     {
         static void Main(string[] args)
         {
-            int marks = 80;
+            int marks = 90;
 
             if(marks == 80)
             {

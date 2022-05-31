@@ -6,7 +6,7 @@ namespace _20220528_BillCalculation
     {
         static void Main(string[] args)
         {
-            int Telephone = 250;
+            double Telephone = 250;
             double Internet = 2629.00;
             double EvoCharji = 0.00;
             double TV = 0;
@@ -14,6 +14,7 @@ namespace _20220528_BillCalculation
             double Discount = 250.0;
             double Adjustment = 0;
 
+            // 3004
             double TotalServiceCharges = Telephone + Internet + EvoCharji + TV + ValueAddedServices - Discount + Adjustment;
 
             double Arears = 4.0;
