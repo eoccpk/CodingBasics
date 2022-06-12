@@ -22,6 +22,14 @@ namespace _20220605_Classes3
             Marks = marks;
         }
 
+        public void Input()
+        {
+            Console.WriteLine("Enter Student RollNumber, Name and Marks");
+            RollNumber = Convert.ToInt32(Console.ReadLine());
+            Name = Console.ReadLine();
+            Marks = Convert.ToInt32(Console.ReadLine());
+        }
+
         public void Show()
         {
             Console.WriteLine("Roll Number: \t" + RollNumber);
