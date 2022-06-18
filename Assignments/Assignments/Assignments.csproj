@@ -43,8 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AreaCalculator.cs" />
     <Compile Include="AssignmentsConditions.cs" />
+    <Compile Include="AssignmentsCalculator.cs" />
+    <Compile Include="AssignmentsFunctions.cs" />
     <Compile Include="AssignmentsLoops.cs" />
+    <Compile Include="Bank\AccountType.cs" />
+    <Compile Include="Bank\BankAccount.cs" />
+    <Compile Include="Bookshop\Book.cs" />
+    <Compile Include="Bookshop\BooksManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

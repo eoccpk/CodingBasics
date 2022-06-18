@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignments.Bookshop;
+using System;
 
 namespace Assignments
 {
@@ -19,6 +20,17 @@ namespace Assignments
             //loops.Three();
             //loops.Four();
             //loops.Five();
+
+            int a = Convert.ToInt32(Console.ReadLine());
+            int b = Convert.ToInt32(Console.ReadLine());
+
+            AssignmentsFunctions functions = new AssignmentsFunctions();
+            //functions.One(a, b);
+            //functions.Two(a, b);
+            //functions.Three(a, b);
+            //functions.Four(a);
+
+            Book
 
             Console.ReadKey();
         }
