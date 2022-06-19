@@ -21,8 +21,8 @@ namespace Assignments
             //loops.Four();
             //loops.Five();
 
-            int a = Convert.ToInt32(Console.ReadLine());
-            int b = Convert.ToInt32(Console.ReadLine());
+            //int a = Convert.ToInt32(Console.ReadLine());
+            //int b = Convert.ToInt32(Console.ReadLine());
 
             AssignmentsFunctions functions = new AssignmentsFunctions();
             //functions.One(a, b);
@@ -30,7 +30,8 @@ namespace Assignments
             //functions.Three(a, b);
             //functions.Four(a);
 
-            Book
+            BooksManager manager = new BooksManager();
+            manager.Run();
 
             Console.ReadKey();
         }

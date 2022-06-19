@@ -6,7 +6,9 @@
         {
             Book b1 = new Book();
             b1.Input();
+
             b1.Print();
+            
             b1.Borrow();
         }
     }

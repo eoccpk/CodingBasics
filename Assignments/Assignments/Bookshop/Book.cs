@@ -25,8 +25,8 @@ namespace Assignments.Bookshop
         {
             Console.WriteLine("Title:" + Title);
             Console.WriteLine("Author:" + Author);
-            Console.Write("NumberOfPages:" + NumberOfPages); 
-            Console.Write("PublicationYear:" + PublicationYear);
+            Console.WriteLine("NumberOfPages:" + NumberOfPages); 
+            Console.WriteLine("PublicationYear:" + PublicationYear);
         }
 
         public void Borrow()
