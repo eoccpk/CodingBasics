@@ -11,7 +11,6 @@ namespace _20220610_ArraysCollections
             Console.WriteLine("Data at First Location: " + marks[0]);
             marks[0] = 58;
             Console.WriteLine("Changed Data at First Location: " + marks[0]);
-
             Console.WriteLine("Data at Second Location: " + marks[1]);
 
             // Input all elements of the array

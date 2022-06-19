@@ -8,9 +8,9 @@ namespace _20220610_ArraysCollections
         public void Run()
         {
             List<Student> students = new List<Student>();
-            for (int i = 0; i < 2; i++)
+            for (int i = 1; i <= 2; i++)
             {
-                Console.WriteLine("Enter Student #" + (i+1) +  ": ");
+                Console.WriteLine("Enter Student #" + i +  ": ");
                 Student student = new Student();
                 student.Input();
                 students.Add(student);
@@ -18,7 +18,7 @@ namespace _20220610_ArraysCollections
 
             // Print All students
             Console.WriteLine("All Students Data: ");
-            foreach (var s in students)
+            foreach (Student s in students)
             {
                 s.Show();
             }
