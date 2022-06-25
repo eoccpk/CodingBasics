@@ -7,6 +7,7 @@ namespace _20220605_Classes3
         public int RollNumber { get; set; }
         public string Name { get; set; }
         public int Marks { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         public Student()
         {
@@ -36,5 +37,22 @@ namespace _20220605_Classes3
             Console.WriteLine("Name: \t\t" + Name);
             Console.WriteLine("Marks: \t\t" + Marks);
         }
+
+
+        // DRY - Don't Repeat Your Self
+        // Current Date - 2000-01-01
+        public int CalculateAge()
+        {
+            // 2022 - 2000 = 22
+            int Age = DateTime.Now.Year - DateOfBirth.Year;
+            return Age;
+        }
+
+        public void IsEligible()
+        {
+            if (CalculateAge() >= 18)
+                Console.WriteLine("Eligible"); 
+        }
+
     }
 }
