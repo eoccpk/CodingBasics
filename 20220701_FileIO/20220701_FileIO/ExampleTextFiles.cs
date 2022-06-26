@@ -22,10 +22,10 @@ namespace _20220701_FileIO
                 //Close the file
                 sw.Close();
             }
-            //catch (IOException e)
-            //{
-            //    Console.WriteLine("Exception: " + e.Message);
-            //}
+            catch (IOException e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
             catch (Exception e)
             {
                 Console.WriteLine("Exception: " + e.Message);

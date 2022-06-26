@@ -43,7 +43,7 @@ namespace _20220701_FileIO.Bookshop
             // Convert String to List of Objects
             List<Book> books = JsonConvert.DeserializeObject<List<Book>>(data);
 
-            foreach (var book in books)
+            foreach (Book book in books)
             {
                 book.Print();
             }

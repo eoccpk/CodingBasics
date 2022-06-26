@@ -1,5 +1,6 @@
 ﻿using _20220701_FileIO.Bookshop;
 using System;
+using System.IO;
 
 namespace _20220701_FileIO
 {
@@ -11,9 +12,12 @@ namespace _20220701_FileIO
             //textFiles.Write();
             //textFiles.Read();
 
-            BooksManager manager = new BooksManager();
-            manager.Write();
-            manager.Read();
+            //ExampleTextFiles2 exampleTextFiles2 = new ExampleTextFiles2();
+            //exampleTextFiles2.Run();
+
+            //BooksManager manager = new BooksManager();
+            //manager.Write();
+            //manager.Read();
 
             Console.ReadKey();
 
