@@ -24,6 +24,7 @@ namespace _20220701_FileIO.Bookshop
             }
 
             // Convert to JSON, CSV or XML
+            // I am converting to JSON using JSON.NET library
             string data = JsonConvert.SerializeObject(books);
 
             // Saving Books
@@ -40,7 +41,7 @@ namespace _20220701_FileIO.Bookshop
             // Read Text File
             string data = File.ReadAllText("D:\\GitHub\\books.json");
 
-            // Convert String to List of Objects
+            // Convert JSON String to List of Objects using JSON.NET library
             List<Book> books = JsonConvert.DeserializeObject<List<Book>>(data);
 
             foreach (Book book in books)
