@@ -15,8 +15,11 @@ namespace _20220702_ThreadsTimer
             //ExampleThreadDestroy exampleThreadDestroy = new ExampleThreadDestroy();
             //exampleThreadDestroy.Run();
 
-            ExampleTimer exampleTimer = new ExampleTimer();
-            exampleTimer.Run();
+            ExampleThreadPassParameters exampleThreadCreate1 = new ExampleThreadPassParameters();
+            exampleThreadCreate1.Run();
+
+            //ExampleTimer exampleTimer = new ExampleTimer();
+            //exampleTimer.Run();
 
             Console.ReadKey();
         }

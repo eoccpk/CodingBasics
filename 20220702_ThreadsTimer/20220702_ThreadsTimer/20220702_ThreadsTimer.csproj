@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleThreadPassParameters.cs" />
     <Compile Include="ExampleThreadCreate.cs" />
     <Compile Include="ExampleThreadDestroy.cs" />
     <Compile Include="ExampleThreadMain.cs" />
