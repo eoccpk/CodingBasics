@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/03/2022 22:51:42
+-- Date Created: 07/04/2022 14:00:04
 -- Generated from EDMX file: D:\GitHub\CodingBasics\20220703_EcommerceStore\20220703_EcommerceStore\StoreModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,29 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_CustomerOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_CustomerOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OrderBill]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_OrderBill];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Customers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Customers];
+GO
+IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Orders];
+GO
+IF OBJECT_ID(N'[dbo].[Bills]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Bills];
+GO
+IF OBJECT_ID(N'[dbo].[Products]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Products];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -69,17 +87,19 @@ CREATE TABLE [dbo].[Products] (
     [Name] nvarchar(max)  NOT NULL,
     [Category] nvarchar(max)  NOT NULL,
     [UnitPrice] int  NOT NULL,
-    [Category2] nvarchar(max)  NOT NULL,
+    [StockQuantity] nvarchar(max)  NOT NULL,
     [Rating] int  NOT NULL,
     [Seller] nvarchar(max)  NOT NULL,
     [Image] nvarchar(max)  NOT NULL
 );
 GO
 
--- Creating table 'OrderProduct'
-CREATE TABLE [dbo].[OrderProduct] (
-    [Orders_Id] int  NOT NULL,
-    [Products_Id] int  NOT NULL
+-- Creating table 'OrderProducts'
+CREATE TABLE [dbo].[OrderProducts] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [OrderId] int  NOT NULL,
+    [ProductId] int  NOT NULL,
+    [Quantity] int  NOT NULL
 );
 GO
 
@@ -111,10 +131,10 @@ ADD CONSTRAINT [PK_Products]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Orders_Id], [Products_Id] in table 'OrderProduct'
-ALTER TABLE [dbo].[OrderProduct]
-ADD CONSTRAINT [PK_OrderProduct]
-    PRIMARY KEY CLUSTERED ([Orders_Id], [Products_Id] ASC);
+-- Creating primary key on [Id] in table 'OrderProducts'
+ALTER TABLE [dbo].[OrderProducts]
+ADD CONSTRAINT [PK_OrderProducts]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -151,28 +171,34 @@ ON [dbo].[Orders]
     ([Bill_Id]);
 GO
 
--- Creating foreign key on [Orders_Id] in table 'OrderProduct'
-ALTER TABLE [dbo].[OrderProduct]
-ADD CONSTRAINT [FK_OrderProduct_Order]
-    FOREIGN KEY ([Orders_Id])
+-- Creating foreign key on [OrderId] in table 'OrderProducts'
+ALTER TABLE [dbo].[OrderProducts]
+ADD CONSTRAINT [FK_OrderOrderProduct]
+    FOREIGN KEY ([OrderId])
     REFERENCES [dbo].[Orders]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Products_Id] in table 'OrderProduct'
-ALTER TABLE [dbo].[OrderProduct]
-ADD CONSTRAINT [FK_OrderProduct_Product]
-    FOREIGN KEY ([Products_Id])
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrderOrderProduct'
+CREATE INDEX [IX_FK_OrderOrderProduct]
+ON [dbo].[OrderProducts]
+    ([OrderId]);
+GO
+
+-- Creating foreign key on [ProductId] in table 'OrderProducts'
+ALTER TABLE [dbo].[OrderProducts]
+ADD CONSTRAINT [FK_ProductOrderProduct]
+    FOREIGN KEY ([ProductId])
     REFERENCES [dbo].[Products]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_OrderProduct_Product'
-CREATE INDEX [IX_FK_OrderProduct_Product]
-ON [dbo].[OrderProduct]
-    ([Products_Id]);
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProductOrderProduct'
+CREATE INDEX [IX_FK_ProductOrderProduct]
+ON [dbo].[OrderProducts]
+    ([ProductId]);
 GO
 
 -- --------------------------------------------------

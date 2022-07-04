@@ -17,7 +17,7 @@ namespace _20220703_EcommerceStore
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Orders = new HashSet<Order>();
+            this.OrderProducts = new HashSet<OrderProduct>();
         }
     
         public int Id { get; set; }
@@ -25,12 +25,12 @@ namespace _20220703_EcommerceStore
         public string Name { get; set; }
         public string Category { get; set; }
         public int UnitPrice { get; set; }
-        public string Category2 { get; set; }
+        public string StockQuantity { get; set; }
         public int Rating { get; set; }
         public string Seller { get; set; }
         public string Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

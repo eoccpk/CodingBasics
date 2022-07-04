@@ -17,7 +17,7 @@ namespace _20220703_EcommerceStore
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.Products = new HashSet<Product>();
+            this.OrderProducts = new HashSet<OrderProduct>();
         }
     
         public int Id { get; set; }
@@ -32,6 +32,6 @@ namespace _20220703_EcommerceStore
         public virtual Customer Customer { get; set; }
         public virtual Bill Bill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

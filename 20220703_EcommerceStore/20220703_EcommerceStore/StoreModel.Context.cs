@@ -29,5 +29,6 @@ namespace _20220703_EcommerceStore
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<OrderProduct> OrderProducts { get; set; }
     }
 }
