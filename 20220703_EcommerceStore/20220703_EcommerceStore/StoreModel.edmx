@@ -47,11 +47,10 @@
     <Property Name="OrderTime" Type="datetime" Nullable="false" />
     <Property Name="IsConfirmed" Type="bit" Nullable="false" />
     <Property Name="IsDispatched" Type="bit" Nullable="false" />
-    <Property Name="DispatchTime" Type="datetime" Nullable="false" />
+    <Property Name="DispatchTime" Type="datetime" Nullable="true" />
     <Property Name="IsDelivered" Type="bit" Nullable="false" />
-    <Property Name="DeliveryTime" Type="datetime" Nullable="false" />
+    <Property Name="DeliveryTime" Type="datetime" Nullable="true" />
     <Property Name="CustomerId" Type="int" Nullable="false" />
-    <Property Name="Bill_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Bills">
     <Key>
@@ -62,6 +61,7 @@
     <Property Name="IsPaid" Type="bit" Nullable="false" />
     <Property Name="Amount" Type="int" Nullable="false" />
     <Property Name="PaymentMethod" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Order_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -70,12 +70,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UnitPrice" Type="int" Nullable="false" />
+    <Property Name="Category" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UnitPrice" Type="int" Nullable="true" />
     <Property Name="StockQuantity" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Rating" Type="int" Nullable="false" />
-    <Property Name="Seller" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="true" />
+    <Property Name="Seller" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Image" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="OrderProducts">
     <Key>
@@ -84,7 +84,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderId" Type="int" Nullable="false" />
     <Property Name="ProductId" Type="int" Nullable="false" />
-    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="OrderedQuantity" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="CustomerOrder">
     <End Role="Customer" Type="StoreModel.Store.Customers" Multiplicity="1" />
@@ -99,14 +99,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="OrderBill">
-    <End Role="Order" Type="StoreModel.Store.Orders" Multiplicity="*" />
-    <End Role="Bill" Type="StoreModel.Store.Bills" Multiplicity="1" />
+    <End Role="Order" Type="StoreModel.Store.Orders" Multiplicity="1" />
+    <End Role="Bill" Type="StoreModel.Store.Bills" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Bill">
+      <Principal Role="Order">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="Bill_Id" />
+      <Dependent Role="Bill">
+        <PropertyRef Name="Order_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -181,9 +181,9 @@
           <Property Name="OrderTime" Type="DateTime" Nullable="false" />
           <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="IsDispatched" Type="Boolean" Nullable="false" />
-          <Property Name="DispatchTime" Type="DateTime" Nullable="false" />
+          <Property Name="DispatchTime" Type="DateTime" Nullable="true" />
           <Property Name="IsDelivered" Type="Boolean" Nullable="false" />
-          <Property Name="DeliveryTime" Type="DateTime" Nullable="false" />
+          <Property Name="DeliveryTime" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="Customer" Relationship="StoreModel.CustomerOrder" FromRole="Order" ToRole="Customer" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bill" Relationship="StoreModel.OrderBill" FromRole="Order" ToRole="Bill" />
@@ -214,7 +214,7 @@
         </EntityType>
         <Association Name="OrderBill">
           <End Type="StoreModel.Order" Role="Order" Multiplicity="1" />
-          <End Type="StoreModel.Bill" Role="Bill" Multiplicity="1" />
+          <End Type="StoreModel.Bill" Role="Bill" Multiplicity="0..1" />
         </Association>
         <EntityType Name="Product">
           <Key>
@@ -223,12 +223,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Category" Type="String" Nullable="false" />
-          <Property Name="UnitPrice" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" />
+          <Property Name="UnitPrice" Type="Int32" Nullable="true" />
           <Property Name="StockQuantity" Type="String" Nullable="false" />
-          <Property Name="Rating" Type="Int32" Nullable="false" />
-          <Property Name="Seller" Type="String" Nullable="false" />
-          <Property Name="Image" Type="String" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="true" />
+          <Property Name="Seller" Type="String" Nullable="true" />
+          <Property Name="Image" Type="String" Nullable="true" />
           <NavigationProperty Name="OrderProducts" Relationship="StoreModel.ProductOrderProduct" FromRole="Product" ToRole="OrderProduct" />
         </EntityType>
         <EntityType Name="OrderProduct">
@@ -240,7 +240,7 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="StoreModel.ProductOrderProduct" FromRole="OrderProduct" ToRole="Product" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderedQuantity" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="OrderOrderProduct">
           <End Type="StoreModel.Order" Role="Order" Multiplicity="1" />
@@ -330,15 +330,15 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="OrderedQuantity" ColumnName="OrderedQuantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="OrderBill" TypeName="StoreModel.OrderBill" StoreEntitySet="Orders">
-      <EndProperty Name="Bill">
-        <ScalarProperty Name="Id" ColumnName="Bill_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="OrderBill" TypeName="StoreModel.OrderBill" StoreEntitySet="Bills">
       <EndProperty Name="Order">
+        <ScalarProperty Name="Id" ColumnName="Order_Id" />
+      </EndProperty>
+      <EndProperty Name="Bill">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

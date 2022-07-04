@@ -24,9 +24,9 @@ namespace _20220703_EcommerceStore
         public System.DateTime OrderTime { get; set; }
         public bool IsConfirmed { get; set; }
         public bool IsDispatched { get; set; }
-        public System.DateTime DispatchTime { get; set; }
+        public Nullable<System.DateTime> DispatchTime { get; set; }
         public bool IsDelivered { get; set; }
-        public System.DateTime DeliveryTime { get; set; }
+        public Nullable<System.DateTime> DeliveryTime { get; set; }
         public int CustomerId { get; set; }
     
         public virtual Customer Customer { get; set; }
