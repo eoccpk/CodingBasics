@@ -25,8 +25,8 @@ namespace _20220709_EcommerceStoreApp
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Welcome!");
-            lblMessage.Text = "Welcome!";
+            frmProducts frmProducts = new frmProducts();
+            frmProducts.Show();
         }
     }
 }

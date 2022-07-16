@@ -6,8 +6,8 @@ namespace _20220709_EcommerceStoreApp.Logic
 {
     public class CustomerManager
     {
-        string ConnectionString = "Server=QADIR\\SQLEXPRESS;Database=EcommerceStore;Trusted_Connection=True;";
-        //string ConnectionString = ConfigurationManager.ConnectionStrings["EcommerceStoreDB"].ConnectionString;
+        //string ConnectionString = "Server=QADIR\\SQLEXPRESS;Database=EcommerceStore;Trusted_Connection=True;";
+        string ConnectionString = ConfigurationManager.ConnectionStrings["EcommerceStoreDB"].ConnectionString;
 
         public List<Customer> GetAllCustomers()
         {
