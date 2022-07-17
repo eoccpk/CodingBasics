@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\StoreLogic.cs" />
     <Compile Include="Domain\Bill.cs" />
     <Compile Include="Domain\Customer.cs" />
     <Compile Include="EcommerceStoreDbContext.cs" />
